@@ -37,4 +37,8 @@ export default {
     padding-right: 15px;
   }
 }
+.app-main{
+  box-sizing: border-box;
+  padding: 10px 30px;
+}
 </style>

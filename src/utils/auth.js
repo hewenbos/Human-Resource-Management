@@ -1,15 +1,16 @@
 import Cookies from 'js-cookie'
+import router from '@/router'
+const myToken = 'HC_TOKEN'
 
-const TokenKey = 'vue_admin_template_token'
-
-export function getToken() {
-  return Cookies.get(TokenKey)
+export const setToken = (token) => {
+  Cookies.set(myToken, token)
+  router.push('/')
 }
 
-export function setToken(token) {
-  return Cookies.set(TokenKey, token)
+export const getToken = () => {
+  return Cookies.get(myToken)
 }
 
-export function removeToken() {
-  return Cookies.remove(TokenKey)
+export const removeToken = () => {
+  return Cookies.remove(myToken)
 }

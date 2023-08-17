@@ -45,7 +45,7 @@ export function parseTime(time, cFormat) {
   const time_str = format.replace(/{([ymdhisa])+}/g, (result, key) => {
     const value = formatObj[key]
     // Note: getDay() returns 0 on Sunday
-    if (key === 'a') { return ['日', '一', '二', '三', '四', '五', '六'][value ] }
+    if (key === 'a') { return ['日', '一', '二', '三', '四', '五', '六'][value] }
     return value.toString().padStart(2, '0')
   })
   return time_str
@@ -114,4 +114,27 @@ export function param2Obj(url) {
     }
   })
   return obj
+}
+
+//递归tree型数据
+
+export function tansListToTreeData(list, provid) {
+  let arr = []
+  //循环数组
+  list.forEach(item => {
+    //如果当前项的pid 等于 父级的id
+    if (item.pid == provid) {
+      //再次循环 传入数组 和 当前的id
+      let children = tansListToTreeData(list, item.id)
+      //如果children有值 children赋值给当前项的children 
+      if (children.length>0) {
+        item.children = children
+      }
+
+      //添加到arr
+      arr.push(item)
+    }
+  })
+
+  return arr
 }
